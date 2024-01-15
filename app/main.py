@@ -14,12 +14,11 @@ async def health():
     ## @TODO needs to actually assert health, quick query probs.
     return {"msg": "OK"}
 
-@app.get("/query/{target}")
+@app.get("/query/")
 async def run_query(
-    query: Annotated[int, Path(title="The Query to run")],
-    q: Annotated[str | None, Query(alias="item-query")] = None,
+   q: Annotated[str | None, Query(max_length=50)] = None
 ):
-    print(query)
-    print(q)
-    return {"test": "yes"}
+    ##print(query)
+    ##print(q)
+    return {"test": q}
     
