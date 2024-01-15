@@ -1,3 +1,5 @@
-def test_hello_world(client):
-    response = client.get("/")
-    assert response.json()['msg'] == "Hello world"
+def test_hello_world(test_app):
+    response = test_app.get("/")
+    print(response)
+    assert response.status_code == 200
+    assert response.json() == {"msg": "Hello World"}
