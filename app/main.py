@@ -17,7 +17,7 @@ async def health():
 
 @app.get("/query/")
 async def run_query(
-   query: Annotated[Union[str,None], Query(max_length=5)] = None
+   query: Annotated[Union[str,None], Query(max_length=30)] = None
 ):
     if query is None:
        return json_make("No query specified")
