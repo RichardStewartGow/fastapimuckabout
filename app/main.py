@@ -3,7 +3,6 @@ from typing import Annotated, Union
 from fastapi import FastAPI, Path, Query
 from app.factories import abstract_factory
 from app.actions.json_message_action import run as json_make
-from fastapi import status
 
 app = FastAPI()
 
@@ -23,8 +22,6 @@ async def run_query(
     if query is None:
        return json_make("No query specified")
 
-    return json_make("Hello") 
-
-#abstract_factory.get_factory(q)
+    return abstract_factory.get_factory(query)
 
     
