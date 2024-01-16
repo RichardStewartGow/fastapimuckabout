@@ -2,6 +2,8 @@ from typing import Annotated
 
 from fastapi import FastAPI, Path, Query
 from app.factories import abstract_factory
+from app.actions.json_message_action import run as json_make
+
 
 app = FastAPI()
 
@@ -18,7 +20,11 @@ async def health():
 async def run_query(
    q: Annotated[str | None, Query(max_length=50)] = None
 ):
-    ##print(query)
-    ##print(q)
-    return {"test": q}
+    print(q)
+    if q is None:
+        return json_make("No query specified")
+
+    return json_make("test") 
+#abstract_factory.get_factory(q)
+
     

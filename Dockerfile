@@ -4,7 +4,7 @@ WORKDIR /docker-app
 
 COPY ./requirements.txt /docker-app/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /docker-app/requirements.txt
+RUN pip install --no-cache-dir -r /docker-app/requirements.txt
 
 COPY . /docker-app
 
