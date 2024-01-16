@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Union
 
 from fastapi import FastAPI, Path, Query
 from app.factories import abstract_factory
@@ -18,13 +18,14 @@ async def health():
 
 @app.get("/query/")
 async def run_query(
-   q: Annotated[str | None, Query(max_length=50)] = None
+   query: Annotated[Union[str,None], Query(max_length=5)] = None
 ):
-    print(q)
-    if q is None:
-        return json_make("No query specified")
+    if query is None:
+       return {"msg": "No query specified"}
 
-    return json_make("test") 
+    return {"msg": "Hello"}
+
+    ##eturn json_make("test") 
 #abstract_factory.get_factory(q)
 
     
