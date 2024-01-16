@@ -3,7 +3,7 @@ from typing import Annotated, Union
 from fastapi import FastAPI, Path, Query
 from app.factories import abstract_factory
 from app.actions.json_message_action import run as json_make
-
+from fastapi import status
 
 app = FastAPI()
 
@@ -21,11 +21,10 @@ async def run_query(
    query: Annotated[Union[str,None], Query(max_length=5)] = None
 ):
     if query is None:
-       return {"msg": "No query specified"}
+       return json_make("No query specified")
 
-    return {"msg": "Hello"}
+    return json_make("Hello") 
 
-    ##eturn json_make("test") 
 #abstract_factory.get_factory(q)
 
     
