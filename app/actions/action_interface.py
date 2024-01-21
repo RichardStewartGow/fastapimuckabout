@@ -1,3 +1,5 @@
 class ActionInterface:
-    def run(input):
-        pass
+    def run(self, payload):
+        """
+        define common interface for actions, everything has a self reference and a duck typed payload
+        """

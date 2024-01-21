@@ -11,3 +11,4 @@ class Container(containers.DeclarativeContainer):
     json_message_action = providers.Callable(
         json_message_action.JsonMessageAction
     )
+    

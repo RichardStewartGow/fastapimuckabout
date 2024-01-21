@@ -10,11 +10,11 @@ def test_query_too_long(test_app):
     assert response.status_code == 422
 
 def test_hello_world(test_app):
-    response = test_app.get("/query/?query=response&type=hello")
+    response = test_app.get("/query/?query=response&qtype=hello")
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello world"}
 
 def test_reverse(test_app):
-    response = test_app.get("/query/?query=response&type=reverse&payload=racecarisracecasespeltbackwards")
+    response = test_app.get("/query/?query=response&qtype=reverse&payload=racecarisracecasespeltbackwards")
     assert response.status_code == 200
     assert response.json() == {"msg": "sdrawkcabtlepsesacecarsiracecar"}

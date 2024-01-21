@@ -1,10 +1,10 @@
 from typing import Annotated
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-from .action_interface import ActionInterface
+from app.actions.action_interface import ActionInterface
 
 class JsonMessageAction(ActionInterface):
-    def run(self, input: str) -> JSONResponse:
+    def run(self, payload: str) -> JSONResponse:
         return JSONResponse(
-            content=jsonable_encoder({"msg": input})
+            content=jsonable_encoder({"msg": payload})
         )

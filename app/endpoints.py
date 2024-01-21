@@ -38,7 +38,7 @@ async def health(
 @inject
 async def run_query(
     query: Annotated[Union[str,None], Query(max_length=30)] = None,
-    type:  Annotated[Union[str,None], Query(max_length=30)] = None,
+    qtype:  Annotated[Union[str,None], Query(max_length=30)] = None,
     payload: Annotated[Union[str,None], Query(max_length=50)] = None,
     jmsgaction: json_message_action = Depends(Provide[Container.json_message_action])
 ):
@@ -53,9 +53,9 @@ async def run_query(
     if query is None:
        return jmsgaction.run("No query specified")
     
-    if type is None:
+    if qtype is None:
         return jmsgaction.run("No query type specified")
 
-    return abstract_factory.get_factory(query, type, payload)
+    return abstract_factory.get_factory(query, qtype, payload)
 
     
