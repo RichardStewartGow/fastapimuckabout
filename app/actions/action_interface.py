@@ -1,5 +1,12 @@
+"""
+common interface for actions
+"""
 class ActionInterface:
+    """
+    Very empty, we only want to semi enforce one method
+    """
     def run(self, payload):
         """
-        define common interface for actions, everything has a self reference and a duck typed payload
+        all accesses via run everything has a self 
+        reference and a duck typed payload to allow maxium flexibility
         """

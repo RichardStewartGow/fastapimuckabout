@@ -1,3 +1,6 @@
+"""
+Routes
+"""
 from typing import Annotated, Union
 
 from fastapi import APIRouter, Query, Depends
@@ -51,11 +54,9 @@ async def run_query(
     """
 
     if query is None:
-       return jmsgaction.run("No query specified")
-    
+        return jmsgaction.run("No query specified")
     if qtype is None:
         return jmsgaction.run("No query type specified")
 
     return abstract_factory.get_factory(query, qtype, payload)
-
     
