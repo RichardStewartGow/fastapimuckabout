@@ -24,6 +24,4 @@ class StrategyEnums(Enum):
             case "REVERSE":
                 return StrategyEnums.REVERSE_STRATETGY(payload)
             case _:
-              raise ValueError('Unable to build a strategy')
-        
-      
+                raise ValueError('Unable to build a strategy')

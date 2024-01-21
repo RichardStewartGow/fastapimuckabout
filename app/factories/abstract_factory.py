@@ -3,10 +3,10 @@ abstract factory
 """
 from app.enums.concrete_factories import ConcreteFactoryEnums
 
-##Use the inputted string/enums to create a class for more concrete constructors or throw error if no match.
+
 def get_factory(query: str, qtype: str, payload: str|None):
     """
-    create concrete factory from string by enum
+    create concrete factory from string by enum error if no match
     """
     try:
         class_target = ConcreteFactoryEnums.from_string(query, qtype, payload)
