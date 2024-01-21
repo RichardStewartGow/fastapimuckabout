@@ -13,3 +13,8 @@ def test_hello_world(test_app):
     response = test_app.get("/query/?query=response&type=hello")
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello world"}
+
+def test_reverse(test_app):
+    response = test_app.get("/query/?query=response&type=reverse&payload=racecarisracecasespeltbackwards")
+    assert response.status_code == 200
+    assert response.json() == {"msg": "sdrawkcabtlepsesacecarsiracecar"}
