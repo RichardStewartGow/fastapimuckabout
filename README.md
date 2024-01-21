@@ -6,9 +6,7 @@
 ###Local with Venv
 
 windows
-'''
 
-'''
 ###Docker compose
 
 
@@ -16,9 +14,7 @@ windows
 ###Local with Venv
 
 windows/venv
-'''
 
-'''
 
 
 ###Docker compose (needed for db tests)
