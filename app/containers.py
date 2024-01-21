@@ -8,8 +8,6 @@ class Container(containers.DeclarativeContainer):
     """
     wiring_config = containers.WiringConfiguration(modules=[".endpoints"])
 
-    #config = providers.Configuration(yaml_files=["config.yml"])
-
     json_message_action = providers.Callable(
         json_message_action.JsonMessageAction
     )
