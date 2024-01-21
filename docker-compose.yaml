@@ -1,7 +1,7 @@
 version: '3.8'
 
-service:
-  web:
+services:
+  api:
     build: .
     command: uvicorn app.main:app --host 0.0.0.0
     volumes:
@@ -18,3 +18,6 @@ service:
       - POSTGRES_USER=postgresuser
       - POSTGRES_PASSWORD=highlysecure
       - POSTGRES_DB=main
+
+volumes:
+  postgres_data:

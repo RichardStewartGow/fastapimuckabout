@@ -1,4 +1,4 @@
-FROM python3.10
+FROM python:3.12.1-slim
 
 WORKDIR /docker-app
 
