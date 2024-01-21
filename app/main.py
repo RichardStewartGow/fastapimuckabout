@@ -1,6 +1,6 @@
 from typing import Annotated, Union
 
-from fastapi import FastAPI, Path, Query
+from fastapi import FastAPI, Query
 from app.factories import abstract_factory
 from app.actions.json_message_action import run as json_make
 
