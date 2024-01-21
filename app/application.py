@@ -2,17 +2,18 @@
 
 from fastapi import FastAPI
 
-from .containers import Container
-from . import endpoints
+from app.containers import Container
+from app import endpoints
 
 
 def create_app() -> FastAPI:
+    """init fast api"""
     container = Container()
 
-    app = FastAPI()
-    app.container = container
-    app.include_router(endpoints.router)
-    return app
+    fastapiapp = FastAPI()
+    fastapiapp.container = container
+    fastapiapp.include_router(endpoints.router)
+    return fastapiapp
 
 
 app = create_app()

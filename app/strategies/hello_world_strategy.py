@@ -1,9 +1,10 @@
 from app.containers import Container
 
-"""
-Super simple hello world function, get everything working with this first!
-"""
+
 def run():
+    """
+    Super simple hello world function, get everything working with this first!
+    """
     container = Container()
     json_msg_action = container.json_message_action
 
