@@ -1,24 +1,24 @@
-#FastAPI Muck About
+# FastAPI Muck About
 
 
-##Install
+## Install
 
-###Local with Venv
+### Local with Venv
 
 windows
 
-###Docker compose
+### Docker compose
 
 
-##Tests
+## Tests
 
-###Local with Venv
+### Local with Venv
 
 windows/venv
 
 
 
-###Docker compose (needed for db tests)
+### Docker compose (needed for db tests)
 
 ```
 docker-compose up
