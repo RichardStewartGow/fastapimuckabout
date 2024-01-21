@@ -17,11 +17,15 @@ async def health():
 
 @app.get("/query/")
 async def run_query(
-   query: Annotated[Union[str,None], Query(max_length=30)] = None
+   query: Annotated[Union[str,None], Query(max_length=30)] = None,
+   type:  Annotated[Union[str,None], Query(max_length=30)] = None
 ):
     if query is None:
        return json_make("No query specified")
+    
+    if type is None:
+        return json_make("No query type specified")
 
-    return abstract_factory.get_factory(query)
+    return abstract_factory.get_factory(query, type)
 
     

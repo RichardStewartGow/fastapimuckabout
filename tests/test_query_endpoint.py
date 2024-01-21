@@ -10,6 +10,6 @@ def test_query_too_long(test_app):
     assert response.status_code == 422
 
 def test_hello_world(test_app):
-    response = test_app.get("/query/?query=response_strategy_factory")
+    response = test_app.get("/query/?query=response&type=hello")
     assert response.status_code == 200
-    assert response.json() == {"msg": "Hello"}
+    assert response.json() == {"msg": "Hello world"}
