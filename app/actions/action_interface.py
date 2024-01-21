@@ -1,3 +1,3 @@
 class ActionInterface:
-    def run(input):
+    def run(self, input):
         pass
