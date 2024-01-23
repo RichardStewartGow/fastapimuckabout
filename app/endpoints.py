@@ -7,7 +7,7 @@ from fastapi import APIRouter, Query, Depends
 from dependency_injector.wiring import inject, Provide
 from app.factories import abstract_factory
 from app.containers import Container
-
+from app.domain.post_query import PostQuery
 
 from .actions import json_message_action
 
@@ -39,7 +39,7 @@ async def health(
 
 @router.get("/query/")
 @inject
-async def run_query(
+async def run_query_get(
     query: Annotated[Union[str,None], Query(max_length=30)] = None,
     qtype:  Annotated[Union[str,None], Query(max_length=30)] = None,
     payload: Annotated[Union[str,None], Query(max_length=50)] = None,
@@ -51,12 +51,23 @@ async def run_query(
     query (str): the type of query top level categorisation, organisationn level for the strategies
     type (str): the spesific type of strategy to run 
     payload (str): if appropriate the payload workload for the strategy to operate on
+
+    make the abstract load the target strategy class, 
+    then run with payload or not
     """
 
     if query is None:
         return jmsgaction.run("No query specified")
     if qtype is None:
         return jmsgaction.run("No query type specified")
+    if payload:
+        return abstract_factory.get_factory(query, qtype, payload)().run(payload)
 
-    return abstract_factory.get_factory(query, qtype, payload)
-    
+    return abstract_factory.get_factory(query, qtype, payload)().run()
+
+
+@router.post("/query/")
+async def run_query_post(
+    query: PostQuery
+):
+    return abstract_factory.get_factory(query.query, query.qtype, query.payload)().run(query.payload)
