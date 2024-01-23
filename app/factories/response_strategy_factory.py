@@ -13,4 +13,4 @@ def get_strategy(qtype: str, payload: str|None):
     except ValueError as exc:
         raise ValueError(f"{qtype} is not a valid type") from exc
 
-    return response
+    return response()

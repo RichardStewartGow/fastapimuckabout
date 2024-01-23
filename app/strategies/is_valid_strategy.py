@@ -1,11 +1,11 @@
 from app.containers import Container
 from app.strategies.strategy_iterface import StrategyInterface
 
-class ReserveStrategy(StrategyInterface):
-
+class IsValidStrategy(StrategyInterface):
     def __init__(self):
         container = Container()
         self.json_msg_action = container.json_message_action
+        self.is_valid = container.is_valid
 
     def run(self, payload: str):
         """
@@ -15,4 +15,12 @@ class ReserveStrategy(StrategyInterface):
 
         payload (str): string to reverse
         """
-        return self.json_msg_action().run(payload[::-1])
+        p = True
+        q = False
+
+        output = f"{p} => {q} is Valid" if self.is_valid(p,q) else "{p} => {q} is Not Valid"
+
+        return self.json_msg_action(output)
+
+
+

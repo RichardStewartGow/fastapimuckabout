@@ -58,5 +58,8 @@ async def run_query(
     if qtype is None:
         return jmsgaction.run("No query type specified")
 
-    return abstract_factory.get_factory(query, qtype, payload)
+    if (payload):
+         return abstract_factory.get_factory(query, qtype, payload).run(payload)
+
+    return abstract_factory.get_factory(query, qtype, payload).run()
     
