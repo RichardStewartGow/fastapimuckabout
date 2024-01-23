@@ -51,6 +51,9 @@ async def run_query(
     query (str): the type of query top level categorisation, organisationn level for the strategies
     type (str): the spesific type of strategy to run 
     payload (str): if appropriate the payload workload for the strategy to operate on
+
+    then make the abstract load the target strategy class, 
+    then run with payload or not
     """
 
     if query is None:
@@ -59,7 +62,7 @@ async def run_query(
         return jmsgaction.run("No query type specified")
 
     if (payload):
-         return abstract_factory.get_factory(query, qtype, payload).run(payload)
+         return abstract_factory.get_factory(query, qtype, payload)().run(payload)
 
-    return abstract_factory.get_factory(query, qtype, payload).run()
+    return abstract_factory.get_factory(query, qtype, payload)().run()
     

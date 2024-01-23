@@ -9,8 +9,8 @@ def get_strategy(qtype: str, payload: str|None):
     resolve strategy from string
     """
     try:
-        response = StrategyEnums.from_type_string(qtype, payload)
+        response_class = StrategyEnums.from_type_string(qtype, payload)
     except ValueError as exc:
         raise ValueError(f"{qtype} is not a valid type") from exc
 
-    return response()
+    return response_class
