@@ -1,6 +1,12 @@
+"""
+hold config settings draw from env file @todo lru cache
+"""
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
+    """
+    settings class, hold config
+    """
     app_name: str
     db_engine: str
     db_host: str

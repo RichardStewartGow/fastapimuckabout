@@ -10,4 +10,3 @@ class ActionInterface:
         all accesses via run everything has a self 
         reference and a duck typed payload to allow maxium flexibility
         """
-
