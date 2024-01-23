@@ -58,6 +58,6 @@ def test_store_event(test_app):
     #now check it saved with our get endpoint
     response = test_app.get('/events')
 
-    jsonResponse = response.json()
+    json_response = response.json()
 
-    assert len(jsonResponse) > 0
+    assert len(json_response) > 0
