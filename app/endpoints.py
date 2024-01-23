@@ -8,6 +8,7 @@ from dependency_injector.wiring import inject, Provide
 from app.factories import abstract_factory
 from app.containers import Container
 from app.domain.post_query import PostQuery
+from app.domain.event_service import EventService
 
 from .actions import json_message_action
 
@@ -72,9 +73,11 @@ async def run_query_post(
 ):
     return abstract_factory.get_factory(query.query, query.qtype, query.payload)().run(query.payload)
 
-@router.post(
-   "/event",     
-   status_code=status.HTTP_201_CREATED
+@router.get(
+   "/events",     
 )
-async def create_event():
-    return 'test'
+@inject
+async def get_all(
+    event_service: EventService = Depends(Provide[Container.event_service])
+):
+    return event_service.get_events()
