@@ -1,5 +1,5 @@
 """
-Mocked unit tests for db endpoints
+Mocked and Non-mocked tests for db endpoints
 """
 from unittest import mock
 from uuid import uuid4
