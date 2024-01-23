@@ -15,11 +15,12 @@ e.g. someone liking and then unliking an event would result in the original even
 class PostEvent(BaseModel):
     dim_id_1: int
     dim_type_1: str
-    dim_id_2: int | None
-    dim_type_2: str | None
-    dim_id_3: int | None
-    dim_type_3: str | None
+    dim_id_2: int | None = None
+    dim_type_2: str | None = None
+    dim_id_3: int | None = None
+    dim_type_3: str | None = None
     ecategory: str
     etype: str
-    especies: str | None
-    date_negated: datetime.datetime | None
+    especies: str | None = None
+    date_created: datetime.datetime | None = None
+    date_negated: datetime.datetime | None = None

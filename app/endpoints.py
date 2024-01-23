@@ -93,11 +93,13 @@ async def get_all(
 )
 @inject
 async def create_event(
-    input: PostEvent,
+    incoming_event: PostEvent,
     event_service: EventService = Depends(Provide[Container.event_service])
 ):
+    print('test')
+
     """
     Bit articial atm, you'd want to pass dimensions at the same time relevant to the event and do mutliple
     writes
     """
-    return event_service.add_event(input)
+    return event_service.add_event(incoming_event)
