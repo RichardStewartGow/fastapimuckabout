@@ -23,7 +23,7 @@ class IsValidStrategy(StrategyInterface):
         p = payload["p"]
         q = payload["q"]
 
-        output = f"{p} => {q} is Valid" if self.is_valid().run(payload) else "{p} => {q} is Not Valid"
+        output = f'{p} => {q} is Valid' if self.is_valid().run(payload) else f'{p} => {q} is Not Valid'
 
         return self.json_msg_action().run(output)
 

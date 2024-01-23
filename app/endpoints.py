@@ -70,6 +70,4 @@ async def run_query_get(
 async def run_query_post(
     query: PostQuery
 ):
-    print(query.dict())
-
-    return abstract_factory.get_factory('response', 'valid', 'test')().run(query.payload)
+    return abstract_factory.get_factory(query.query, query.qtype, query.payload)().run(query.payload)
