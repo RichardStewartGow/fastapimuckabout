@@ -1,3 +1,0 @@
-default:
-  query: "Dependency Injector"
-  limit: 10
