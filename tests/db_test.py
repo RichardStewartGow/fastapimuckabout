@@ -9,7 +9,9 @@ from app.domain.event import Event
 from app.application import app
 
 def test_get_event_list(test_app):
-
+    """
+    Mock db to test is get endpoint is workingn
+    """
     guid1 = str(uuid4())
     guid2 = str(uuid4())
 
@@ -33,7 +35,7 @@ def test_get_event_list(test_app):
 def test_store_event(test_app):
     """
     bit artifical atm, we wouldnt want to pass ids we want to pass a larger log
-    and have it resolve it all
+    and have it resolve it all, but this tests C and R of crud in one.
     """
     response = test_app.post(
             "/events/",
@@ -53,9 +55,7 @@ def test_store_event(test_app):
 
     assert response.status_code == 204
 
-    """
-    now check it saved with our get endpoint
-    """
+    #now check it saved with our get endpoint
     response = test_app.get('/events')
 
     jsonResponse = response.json()
