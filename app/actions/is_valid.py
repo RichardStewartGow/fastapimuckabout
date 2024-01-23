@@ -1,5 +1,6 @@
 from app.actions.action_interface import ActionInterface
 
 class IsValid(ActionInterface):
-    def run(self, p: bool, q: bool) -> bool:
-        return not(p) or q
+    def run(self, payload: dict) -> bool:
+        return 'test'
+        #return not(p) or q

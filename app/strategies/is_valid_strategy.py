@@ -7,7 +7,7 @@ class IsValidStrategy(StrategyInterface):
         self.json_msg_action = container.json_message_action
         self.is_valid = container.is_valid
 
-    def run(self, payload: str):
+    def run(self, payload: dict):
         """
         Reverse the input payload into a new string 
         using slicing as strings are immutate iterateble objects then

@@ -16,7 +16,7 @@ class StrategyEnums(Enum):
     IS_VALID_STRATEGY = IsValidStrategy
 
     @staticmethod
-    def from_type_string(qtype: str, payload: str|None):
+    def from_type_string(qtype: str, payload: str|dict|None):
         """
         turn string into relevant strategy class, break out when it gets bigger than 4 cases
         """

@@ -4,7 +4,7 @@ abstract factory
 from app.enums.concrete_factories import ConcreteFactoryEnums
 
 
-def get_factory(query: str, qtype: str, payload: str|None):
+def get_factory(query: str, qtype: str, payload: str|dict|None):
     """
     create concrete factory from string by enum error if no match
     """

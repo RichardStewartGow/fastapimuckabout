@@ -59,6 +59,9 @@ def test_validity_post_bad_input(test_app):
 
     assert response.status_code == 422
 
+
+
+
 def test_validity_post_one_call(test_app):
     response = test_app.post(
         "/query/",
@@ -66,8 +69,8 @@ def test_validity_post_one_call(test_app):
             "query": "response",
             "qtype": "valid",
             "payload": {
-                "p": True,
-                "q": False
+                #"p": True,
+                #"q": False
             }
         }
     )
