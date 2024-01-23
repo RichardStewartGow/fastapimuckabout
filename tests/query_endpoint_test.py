@@ -63,6 +63,10 @@ def test_validity_post_bad_input(test_app):
 
 
 def test_validity_post_one_call(test_app):
+    """
+    Test the logical concept of validity, truth iff the conclusion cannot be false and the premise true
+    where p = premise, q = conclusion
+    """
     response = test_app.post(
         "/query/",
         json={
@@ -77,3 +81,41 @@ def test_validity_post_one_call(test_app):
 
     assert response.status_code == 200
     assert response.json() == {"msg": "True => False is Not Valid"}
+
+def test_validity_post_full_truth_table(test_app):
+    truth_table_inputs_p = {
+            "p1": True,
+            "p2": True,
+            "p3": False,
+            "p4": False,
+    }
+
+    truth_table_inputs_q = {
+            "q1": True,
+            "q2": False,
+            "q3": True,
+            "q4": False,
+    }
+
+    truth_table_result = {
+            1: "True => True is Valid",
+            2: "True => False is Not Valid",
+            3: "False => True is Valid",
+            4: "False => False is Valid"
+    }
+
+    for k1, k2, k3 in zip(truth_table_inputs_p, truth_table_inputs_q, truth_table_result):
+        response = test_app.post(
+            "/query/",
+            json={
+                "query": "response",
+                "qtype": "valid",
+                "payload": {
+                    "p": truth_table_inputs_p[k1],
+                    "q": truth_table_inputs_q[k2]
+                }
+            }
+        )
+
+        assert response.status_code == 200
+        assert response.json() == {"msg": truth_table_result[k3]}
