@@ -64,7 +64,10 @@ def test_validity_post_one_call(test_app):
         "/query/",
         json={
             "query": "response",
-            "type": "valid"
+            "qtype": "valid",
+            "payload": [
+                "test"
+            ]
         }
     )
 
