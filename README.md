@@ -21,6 +21,7 @@ windows/venv
 ### Docker compose (needed for db tests)
 
 ```
+docker-compose build 
 docker-compose up
 docker exec -it [containerId] /bin/sh
 cd tests
