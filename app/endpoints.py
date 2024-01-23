@@ -3,7 +3,7 @@ Routes
 """
 from typing import Annotated, Union
 
-from fastapi import APIRouter, Query, Depends
+from fastapi import APIRouter, Query, Depends, status
 from dependency_injector.wiring import inject, Provide
 from app.factories import abstract_factory
 from app.containers import Container
@@ -72,3 +72,9 @@ async def run_query_post(
 ):
     return abstract_factory.get_factory(query.query, query.qtype, query.payload)().run(query.payload)
 
+@router.post(
+   "/event",     
+   status_code=status.HTTP_201_CREATED
+)
+async def create_event():
+    return 'test'

@@ -7,7 +7,7 @@ from app.config import Settings
 
 settings = Settings()
 
-SQLALCHEMY_DATABASE_URL = f"{settings.db_engine}://{settings.db_user}:{settings.db_password}@postgresserver/db"
+SQLALCHEMY_DATABASE_URL = f"{settings.db_engine}://{settings.db_user}:{settings.db_password}@{settings.db_host}"
 
 class Container(containers.DeclarativeContainer):
     """
