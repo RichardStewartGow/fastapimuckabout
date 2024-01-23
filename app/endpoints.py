@@ -72,4 +72,4 @@ async def run_query_post(
 ):
     print(query.dict())
 
-    return abstract_factory.get_factory('response', 'valid', 'test')().run({})
+    return abstract_factory.get_factory('response', 'valid', 'test')().run(query.payload)

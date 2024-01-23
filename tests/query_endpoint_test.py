@@ -69,10 +69,11 @@ def test_validity_post_one_call(test_app):
             "query": "response",
             "qtype": "valid",
             "payload": {
-                #"p": True,
-                #"q": False
+                "p": True,
+                "q": False
             }
         }
     )
 
     assert response.status_code == 200
+    assert response.json() == {"msg": "True => False is Not Valid"}
