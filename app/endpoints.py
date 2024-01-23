@@ -7,7 +7,7 @@ from fastapi import APIRouter, Query, Depends
 from dependency_injector.wiring import inject, Provide
 from app.factories import abstract_factory
 from app.containers import Container
-
+from app.domain.post_query import PostQuery
 
 from .actions import json_message_action
 
@@ -39,7 +39,7 @@ async def health(
 
 @router.get("/query/")
 @inject
-async def run_query(
+async def run_query_get(
     query: Annotated[Union[str,None], Query(max_length=30)] = None,
     qtype:  Annotated[Union[str,None], Query(max_length=30)] = None,
     payload: Annotated[Union[str,None], Query(max_length=50)] = None,
@@ -64,4 +64,10 @@ async def run_query(
         return abstract_factory.get_factory(query, qtype, payload)().run(payload)
 
     return abstract_factory.get_factory(query, qtype, payload)().run()
-    
+
+
+@router.post("/query/")
+async def run_query_post(
+    query: PostQuery
+):
+    return "test"
