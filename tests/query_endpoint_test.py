@@ -83,6 +83,9 @@ def test_validity_post_one_call(test_app):
     assert response.json() == {"msg": "True => False is Not Valid"}
 
 def test_validity_post_full_truth_table(test_app):
+    """
+    map/test the entire truth table my using the zip iterator to iterate over 3 dicts as once
+    """
     truth_table_inputs_p = {
             "p1": True,
             "p2": True,
