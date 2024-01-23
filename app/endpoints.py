@@ -3,11 +3,13 @@ Routes
 """
 from typing import Annotated, Union
 
-from fastapi import APIRouter, Query, Depends
+from fastapi import APIRouter, Query, Depends, status
 from dependency_injector.wiring import inject, Provide
 from app.factories import abstract_factory
 from app.containers import Container
 from app.domain.post_query import PostQuery
+from app.domain.post_event import PostEvent
+from app.domain.event_service import EventService
 
 from .actions import json_message_action
 
@@ -61,13 +63,41 @@ async def run_query_get(
     if qtype is None:
         return jmsgaction.run("No query type specified")
     if payload:
-        return abstract_factory.get_factory(query, qtype, payload)().run(payload)
+        return abstract_factory.get_factory(query, qtype)().run(payload)
 
-    return abstract_factory.get_factory(query, qtype, payload)().run()
+    return abstract_factory.get_factory(query, qtype)().run()
 
 
 @router.post("/query/")
 async def run_query_post(
     query: PostQuery
 ):
-    return abstract_factory.get_factory(query.query, query.qtype, query.payload)().run(query.payload)
+    return abstract_factory.get_factory(query.query, query.qtype)().run(query.payload)
+
+@router.get(
+   "/events",     
+)
+@inject
+async def get_all(
+    event_service: EventService = Depends(Provide[Container.event_service])
+):
+    """
+    Return all events
+    """
+    return event_service.get_events()
+
+
+@router.post(
+    "/events",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+@inject
+async def create_event(
+    incoming_event: PostEvent,
+    event_service: EventService = Depends(Provide[Container.event_service])
+):
+    """
+    Bit articial atm, you'd want to pass dimensions at the same time relevant to the event and do mutliple
+    writes
+    """
+    return event_service.add_event(incoming_event)

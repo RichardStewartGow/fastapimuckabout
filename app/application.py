@@ -10,6 +10,9 @@ def create_app() -> FastAPI:
     """init fast api"""
     container = Container()
 
+    db = container.db()
+    db.create_database()
+
     fastapiapp = FastAPI()
     fastapiapp.container = container
     fastapiapp.include_router(endpoints.router)

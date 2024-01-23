@@ -8,14 +8,14 @@ class ConcreteFactoryEnums(Enum):
     RESPONSE_STRATEGY_FACTORY = response_strategy_factory
 
     @staticmethod
-    def from_string(query: str, qtype: str, payload: str|None):
+    def from_string(query: str, qtype: str):
         """
         Make this accessible where ever we invoke the enum, 
         make factory class from string and pass down type arg
         """
         match query.upper():
             case "RESPONSE":
-                return ConcreteFactoryEnums.RESPONSE_STRATEGY_FACTORY(qtype, payload)
+                return ConcreteFactoryEnums.RESPONSE_STRATEGY_FACTORY(qtype)
             case _:
                 raise ValueError('Unable to build a response strategy factory')
        

@@ -2,7 +2,7 @@ from app.containers import Container
 from app.strategies.strategy_iterface import StrategyInterface
 
 class HelloWorldStrategy(StrategyInterface):
-    def __init__(self):   
+    def __init__(self):
         container = Container()
         self.json_msg_action = container.json_message_action
 
