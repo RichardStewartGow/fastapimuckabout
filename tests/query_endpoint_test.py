@@ -37,9 +37,35 @@ def test_reverse_get(test_app):
 
 
 def test_validity_post_no_input(test_app):
-
+    """
+    If we fire nothing at a post enndpoint expect 422
+    """
     response = test_app.post(
         "/query/"
     )
 
     assert response.status_code == 422
+
+def test_validity_post_bad_input(test_app):
+    """
+    if we fire a no PostQuery object 422 also
+    """
+    response = test_app.post(
+        "/query/",
+         json={
+            "beep": "boop"
+        }
+    )
+
+    assert response.status_code == 422
+
+def test_validity_post_one_call(test_app):
+    response = test_app.post(
+        "/query/",
+        json={
+            "query": "response",
+            "type": "valid"
+        }
+    )
+
+    assert response.status_code == 200
