@@ -8,6 +8,7 @@ from dependency_injector.wiring import inject, Provide
 from app.factories import abstract_factory
 from app.containers import Container
 from app.domain.post_query import PostQuery
+from app.domain.post_event import PostEvent
 from app.domain.event_service import EventService
 
 from .actions import json_message_action
@@ -80,4 +81,23 @@ async def run_query_post(
 async def get_all(
     event_service: EventService = Depends(Provide[Container.event_service])
 ):
+    """
+    Return all events
+    """
     return event_service.get_events()
+
+
+@router.post(
+    "/events",
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+@inject
+async def create_event(
+    input: PostEvent,
+    event_service: EventService = Depends(Provide[Container.event_service])
+):
+    """
+    Bit articial atm, you'd want to pass dimensions at the same time relevant to the event and do mutliple
+    writes
+    """
+    return event_service.add_event(input)

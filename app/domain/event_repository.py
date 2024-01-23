@@ -3,6 +3,7 @@ from typing import Callable, Iterator
 
 from sqlalchemy.orm import Session
 
+from app.domain.post_event import PostEvent
 from app.domain.event import Event
 
 class EventRepository:
@@ -14,16 +15,9 @@ class EventRepository:
         with self.session_factory() as session:
             return session.query(Event).all()
         
-    def add(
-            self, id: int, guid: str, 
-            dim_id_1: int, dim_type_1: int, 
-            dim_id_2: int, dim_type_2: int, 
-            dim_id_3: int, dim_type_3: int,
-            category: str, type: str,
-            species: str
-        ) -> Event:
+    def add(self, input: PostEvent) -> Event:
         with self.session_factory() as session:
-            event = Event(id=id, guid=guid, dim_id_1=dim_id_1)
+            event = Event(input)
             session.add(event)
             session.commit()
             session.refresh(event)

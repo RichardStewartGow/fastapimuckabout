@@ -1,22 +1,14 @@
 # FastAPI Muck About
 
+Designed to work with Docker and docker-compose (venv also possible if you have a local postgres install!)
 
 ## Install
 
-### Local with Venv
-
-windows
-
-### Docker compose
-
-
-## Tests
-
-### Local with Venv
-
-windows/venv
-
-
+```
+cp .env.example .env
+docker-compose build
+docker-compose up
+```
 
 ### Docker compose (needed for db tests)
 
