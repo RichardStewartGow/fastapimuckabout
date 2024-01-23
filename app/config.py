@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     """
-    settings class, hold config
+    settings class, hold config drawn from env file
     """
     app_name: str
     db_engine: str

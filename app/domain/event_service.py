@@ -11,6 +11,6 @@ class EventService:
 
     def get_events(self) -> Iterator[Event]:
         return self._repository.get_all()
-    
-    def add_event(self, input: PostEvent) -> Event:
-        return self._repository.add(input)
+
+    def add_event(self, incoming_event: PostEvent) -> Event:
+        return self._repository.add(incoming_event)

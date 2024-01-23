@@ -63,16 +63,16 @@ async def run_query_get(
     if qtype is None:
         return jmsgaction.run("No query type specified")
     if payload:
-        return abstract_factory.get_factory(query, qtype, payload)().run(payload)
+        return abstract_factory.get_factory(query, qtype)().run(payload)
 
-    return abstract_factory.get_factory(query, qtype, payload)().run()
+    return abstract_factory.get_factory(query, qtype)().run()
 
 
 @router.post("/query/")
 async def run_query_post(
     query: PostQuery
 ):
-    return abstract_factory.get_factory(query.query, query.qtype, query.payload)().run(query.payload)
+    return abstract_factory.get_factory(query.query, query.qtype)().run(query.payload)
 
 @router.get(
    "/events",     
@@ -96,8 +96,6 @@ async def create_event(
     incoming_event: PostEvent,
     event_service: EventService = Depends(Provide[Container.event_service])
 ):
-    print('test')
-
     """
     Bit articial atm, you'd want to pass dimensions at the same time relevant to the event and do mutliple
     writes

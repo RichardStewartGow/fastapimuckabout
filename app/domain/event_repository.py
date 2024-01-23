@@ -14,10 +14,16 @@ class EventRepository:
         self.session_factory = session_factory
 
     def get_all(self) -> Iterator[Event]:
+        """
+        Get all events
+        """
         with self.session_factory() as session:
             return session.query(Event).all()
-       
+
     def add(self, incoming_input: PostEvent) -> Event:
+        """
+        Add event to db
+        """
         with self.session_factory() as session:
             event = Event(
                 guid=str(uuid4()),

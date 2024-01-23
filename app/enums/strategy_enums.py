@@ -16,14 +16,13 @@ class StrategyEnums(Enum):
     IS_VALID_STRATEGY = IsValidStrategy
 
     @staticmethod
-    def from_type_string(qtype: str, payload: str|dict|None):
+    def from_type_string(qtype: str):
         """
         turn string into relevant strategy class, break out when it gets bigger than 4 cases
         """
         match qtype.upper():
             case "HELLO":
-                test = StrategyEnums.HELLO_WORLD_STRATEGY.value
-                return test
+                return StrategyEnums.HELLO_WORLD_STRATEGY.value
             case "REVERSE":
                 return StrategyEnums.REVERSE_STRATETGY.value
             case "VALID":
