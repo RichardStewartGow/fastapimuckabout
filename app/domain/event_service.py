@@ -1,7 +1,8 @@
+from typing import Iterator
 from app.domain.event import Event
 from app.domain.event_repository import EventRepository
 from app.domain.post_event import PostEvent
-from typing import Iterator
+
 
 class EventService:
     def __init__(self, event_repository: EventRepository) -> None:

@@ -42,11 +42,22 @@ def test_store_event(test_app):
                 "dim_type_1": "USER",
                 "dim_id_2": 1,
                 "dim_type_2": "POST",
+                "dim_id_3": 2,
+                "dim_type_3": "USER",
                 "ecategory": "COMMUNICATION",
                 "etype": "CREATION",
-                "especies": "MESSAGE_POST",
+                "especies": "MESSAGE_REPLY",
             }
         )
 
 
     assert response.status_code == 204
+
+    """
+    now check it saved with our get endpoint
+    """
+    response = test_app.get('/events')
+
+    jsonResponse = response.json()
+
+    assert len(jsonResponse) > 0
